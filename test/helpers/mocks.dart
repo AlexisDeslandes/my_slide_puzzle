@@ -3,8 +3,10 @@ import 'package:mocktail/mocktail.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+import 'package:very_good_slide_puzzle/puzzle_theme/puzzle_theme.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
+import 'package:very_good_slide_puzzle/utils/utils.dart';
 
 class MockPuzzleTheme extends Mock implements PuzzleTheme {}
 
@@ -28,3 +30,7 @@ class MockPuzzle extends Mock implements Puzzle {}
 class MockTile extends Mock implements Tile {}
 
 class MockPuzzleLayoutDelegate extends Mock implements PuzzleLayoutDelegate {}
+
+class MockPuzzleThemeState extends Mock implements PuzzleThemeState {}
+
+class MockImageUtils extends Mock implements ImageUtils {}

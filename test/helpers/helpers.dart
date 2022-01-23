@@ -5,6 +5,7 @@
 // license that can be found in the LICENSE file or at
 // https://opensource.org/licenses/MIT.
 
+export 'image.dart';
 export 'mocks.dart';
 export 'pump_app.dart';
 export 'set_display_size.dart';

@@ -2,6 +2,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+import 'package:very_good_slide_puzzle/puzzle_theme/puzzle_theme.dart';
 
 /// {@template puzzle_layout_delegate}
 /// A delegate for computing the layout of the puzzle UI.
@@ -49,6 +50,19 @@ abstract class PuzzleLayoutDelegate extends Equatable {
   /// To complete the puzzle, all tiles must be arranged
   /// in order by their [Tile.value].
   Widget tileBuilder(Tile tile, PuzzleState state);
+
+  /// A widget builder for the puzzle tile associated
+  /// with [tile], based on the puzzle [state]
+  /// and the puzzleTheme [puzzleThemeState].
+  ///
+  /// To complete the puzzle, all tiles must be arranged
+  /// in order by their [Tile.value].
+  Widget tileThemedBuilder(
+    Tile tile,
+    PuzzleState state,
+    PuzzleThemeState puzzleThemeState,
+  ) =>
+      const SizedBox();
 
   /// A widget builder for the whitespace puzzle tile.
   Widget whitespaceTileBuilder();

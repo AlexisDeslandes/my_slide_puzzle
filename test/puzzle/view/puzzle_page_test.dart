@@ -51,6 +51,7 @@ void main() {
       when(() => theme.layoutDelegate).thenReturn(layoutDelegate);
       when(() => theme.backgroundColor).thenReturn(Colors.black);
       when(() => theme.hasTimer).thenReturn(true);
+      when(() => theme.useBackgroundImage).thenReturn(false);
       when(() => themeState.theme).thenReturn(theme);
       when(() => themeBloc.state).thenReturn(themeState);
     });
@@ -135,6 +136,14 @@ void main() {
       );
 
       expect(find.byKey(Key('puzzle_sections')), findsOneWidget);
+    });
+
+    testWidgets('renders puzzle themeSelector.', (tester) async {
+      await tester.pumpApp(
+        PuzzleView(),
+        themeBloc: themeBloc,
+      );
+      expect(find.byType(ThemeSelector), findsOneWidget);
     });
 
     testWidgets(

@@ -62,6 +62,8 @@ class PuzzleState extends Equatable {
     );
   }
 
+  int get tileCount => puzzle.tiles.length;
+
   @override
   List<Object?> get props => [
         puzzle,

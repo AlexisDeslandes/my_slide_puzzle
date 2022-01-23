@@ -272,6 +272,8 @@ class SimplePuzzleBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GridView.count(
+      //todo interesting for the video
+      clipBehavior: Clip.none,
       padding: EdgeInsets.zero,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -283,9 +285,15 @@ class SimplePuzzleBoard extends StatelessWidget {
   }
 }
 
+/// Size of the font used in the tile widget.
 abstract class _TileFontSize {
+  /// Small version
   static double small = 36;
+
+  /// Medium version
   static double medium = 50;
+
+  /// Large version
   static double large = 54;
 }
 

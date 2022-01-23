@@ -19,5 +19,9 @@
     "puzzleCompleted": "Well done. Congrats!",
     "@puzzleCompleted": {
         "description": "Shown as the success state when the puzzle is completed"
+    },
+    "applybackgroundImage": "Apply background image",
+    "@applybackgroundImage": {
+        "description": "Indicates user how to turn on the puzzle background image"
     }
 }

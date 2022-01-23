@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
+import 'package:very_good_slide_puzzle/puzzle_theme/bloc/puzzle_theme_bloc.dart';
 import 'package:very_good_slide_puzzle/theme/theme.dart';
 import 'package:very_good_slide_puzzle/timer/timer.dart';
 
@@ -19,11 +20,7 @@ class PuzzlePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => ThemeBloc(
-        themes: const [
-          SimpleTheme(),
-        ],
-      ),
+      create: (context) => ThemeBloc(themes: const [SimpleTheme(), MyTheme()]),
       child: const PuzzleView(),
     );
   }
@@ -49,13 +46,24 @@ class PuzzleView extends StatelessWidget {
         create: (context) => TimerBloc(
           ticker: const Ticker(),
         ),
-        child: BlocProvider(
-          create: (context) => PuzzleBloc(4)
-            ..add(
-              PuzzleInitialized(
-                shufflePuzzle: shufflePuzzle,
-              ),
+        child: MultiBlocProvider(
+          providers: [
+            BlocProvider(
+              create: (context) => PuzzleBloc(4)
+                ..add(
+                  PuzzleInitialized(
+                    shufflePuzzle: shufflePuzzle,
+                  ),
+                ),
             ),
+            BlocProvider(
+              create: (context) {
+                final puzzleBloc = context.read<PuzzleBloc>();
+                return PuzzleThemeBloc(puzzleBloc: puzzleBloc)
+                  ..add(SplitPuzzleTheme(puzzleBloc.state.tileCount));
+              },
+            )
+          ],
           child: const _Puzzle(
             key: Key('puzzle_view_puzzle'),
           ),
@@ -91,6 +99,11 @@ class _Puzzle extends StatelessWidget {
                     _PuzzleSections(
                       key: Key('puzzle_sections'),
                     ),
+                    ThemeSelector(),
+                    ResponsiveGap(
+                      small: 32,
+                      medium: 48,
+                    )
                   ],
                 ),
               ),
@@ -255,11 +268,22 @@ class _PuzzleTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Widget widget;
     final theme = context.select((ThemeBloc bloc) => bloc.state.theme);
-    final state = context.select((PuzzleBloc bloc) => bloc.state);
+    if (tile.isWhitespace) {
+      widget = theme.layoutDelegate.whitespaceTileBuilder();
+    } else {
+      final state = context.select((PuzzleBloc bloc) => bloc.state);
 
-    return tile.isWhitespace
-        ? theme.layoutDelegate.whitespaceTileBuilder()
-        : theme.layoutDelegate.tileBuilder(tile, state);
+      if (theme.useBackgroundImage) {
+        final puzzleThemeState =
+            context.select((PuzzleThemeBloc value) => value.state);
+        widget = theme.layoutDelegate
+            .tileThemedBuilder(tile, state, puzzleThemeState);
+      } else {
+        widget = theme.layoutDelegate.tileBuilder(tile, state);
+      }
+    }
+    return widget;
   }
 }
