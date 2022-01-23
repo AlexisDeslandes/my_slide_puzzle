@@ -39,12 +39,4 @@ void main() {
       });
     });
   });
-
-  /*
-      if (squares != null)
-        squares.forEachIndexed((index, element) => File('test$index.png')
-          ..writeAsBytesSync(element)
-          ..create());
-
-       */
 }

@@ -48,15 +48,15 @@ class ImageUtils {
     );
   }
 
-  img.Image _cropImage(Rectangle<int> cropRectangle, img.Image image) {
-    final image = img.Image(cropRectangle.width, cropRectangle.height),
+  img.Image _cropImage(Rectangle<int> cropRectangle, img.Image originalImg) {
+    final currImg = img.Image(cropRectangle.width, cropRectangle.height),
         top = cropRectangle.top,
         left = cropRectangle.left;
     for (var y = 0; y < cropRectangle.height; y++) {
       for (var x = 0; x < cropRectangle.width; x++) {
-        image.setPixel(x, y, image.getPixel(x + left, y + top));
+        currImg.setPixel(x, y, originalImg.getPixel(x + left, y + top));
       }
     }
-    return image;
+    return currImg;
   }
 }
