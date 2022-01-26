@@ -26,14 +26,14 @@ jobs:
         run: flutter packages get
 
       - name: Build for Web
-        run: flutter build web --target lib/main_development.dart --web-renderer html
+        run: flutter build web
 
       - name: Deploy
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: "${{ secrets.GITHUB_TOKEN }}"
           firebaseServiceAccount: "${{ secrets.FIREBASE_HOSTING_DEV }}"
-          projectId: very-good-flutter-dev
-          target: very-good-puzzle
+          projectId: slide-puzzle-dev
+          target: slide-puzzle-dev-34815
           expires: 30d
           channelId: live
