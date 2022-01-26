@@ -19,9 +19,6 @@ abstract class PuzzleTheme extends Equatable {
   /// Whether this theme use background image.
   bool get useBackgroundImage => false;
 
-  /// Whether this theme displays the countdown
-  /// from 3 to 0 seconds when the puzzle is started.
-  bool get hasCountdown;
   /// The text color of [name].
   Color get nameColor;
 

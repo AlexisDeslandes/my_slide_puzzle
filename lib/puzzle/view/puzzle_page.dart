@@ -80,31 +80,6 @@ class PuzzleView extends StatelessWidget {
     final shufflePuzzle = theme is SimpleTheme;
 
     return Scaffold(
-      backgroundColor: theme.backgroundColor,
-      body: BlocProvider(
-        create: (context) => TimerBloc(
-          ticker: const Ticker(),
-        ),
-        child: MultiBlocProvider(
-          providers: [
-            BlocProvider(
-              create: (context) => PuzzleBloc(4)
-                ..add(
-                  PuzzleInitialized(
-                    shufflePuzzle: shufflePuzzle,
-                  ),
-                ),
-            ),
-            BlocProvider(
-              create: (context) {
-                final puzzleBloc = context.read<PuzzleBloc>();
-                return PuzzleThemeBloc(puzzleBloc: puzzleBloc)
-                  ..add(SplitPuzzleTheme(puzzleBloc.state.tileCount));
-              },
-            )
-          ],
-          child: const _Puzzle(
-            key: Key('puzzle_view_puzzle'),
       body: AnimatedContainer(
         duration: PuzzleThemeAnimationDuration.backgroundColorChange,
         decoration: BoxDecoration(color: theme.backgroundColor),
@@ -128,6 +103,13 @@ class PuzzleView extends StatelessWidget {
                     ),
                   ),
               ),
+              BlocProvider(
+                create: (context) {
+                  final puzzleBloc = context.read<PuzzleBloc>();
+                  return PuzzleThemeBloc(puzzleBloc: puzzleBloc)
+                    ..add(SplitPuzzleTheme(puzzleBloc.state.tileCount));
+                },
+              )
             ],
             child: const _Puzzle(
               key: Key('puzzle_view_puzzle'),

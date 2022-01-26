@@ -1,6 +1,6 @@
 import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/layout/my_puzzle_layout_delegate.dart';
-import 'package:very_good_slide_puzzle/theme/theme.dart';
+import 'package:very_good_slide_puzzle/simple/simple.dart';
 
 /// {@template simple_theme}
 /// An extension of the simple puzzle theme,

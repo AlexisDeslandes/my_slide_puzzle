@@ -6,6 +6,7 @@ import 'package:very_good_slide_puzzle/layout/layout.dart';
 import 'package:very_good_slide_puzzle/models/models.dart';
 import 'package:very_good_slide_puzzle/puzzle/puzzle.dart';
 import 'package:very_good_slide_puzzle/puzzle_theme/bloc/puzzle_theme_bloc.dart';
+import 'package:very_good_slide_puzzle/simple/simple.dart';
 
 /// {@template simple_puzzle_layout_delegate}
 /// My own version of delegate for computing the layout of the puzzle UI.
