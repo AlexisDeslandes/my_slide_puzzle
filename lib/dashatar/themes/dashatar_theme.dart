@@ -1,3 +1,5 @@
+import 'dart:typed_data';
+
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as p;
 import 'package:very_good_slide_puzzle/colors/colors.dart';
@@ -83,6 +85,12 @@ abstract class DashatarTheme extends PuzzleTheme {
   /// The dash asset for the i-th tile may be found in the file i.png.
   String dashAssetForTile(Tile tile) =>
       p.join(dashAssetsDirectory, '${tile.value.toString()}.png');
+
+  /// image used for this theme. It replaces the themeAsset.
+  Uint8List? get themeImage => null;
+
+  /// image split for the theme.
+  List<Uint8List>? get splitThemeImage => null;
 
   @override
   List<Object?> get props => [

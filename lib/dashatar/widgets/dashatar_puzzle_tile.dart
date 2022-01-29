@@ -150,14 +150,26 @@ class DashatarPuzzleTileState extends State<DashatarPuzzleTile>
                         unawaited(_audioPlayer?.replay());
                       }
                     : null,
-                icon: Image.asset(
-                  theme.dashAssetForTile(widget.tile),
-                  semanticLabel: context.l10n.puzzleTileLabelText(
-                    widget.tile.value.toString(),
-                    widget.tile.currentPosition.x.toString(),
-                    widget.tile.currentPosition.y.toString(),
-                  ),
-                ),
+                icon: theme.splitThemeImage != null
+                    ? ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.memory(
+                          theme.splitThemeImage![widget.tile.value - 1],
+                          semanticLabel: context.l10n.puzzleTileLabelText(
+                            widget.tile.value.toString(),
+                            widget.tile.currentPosition.x.toString(),
+                            widget.tile.currentPosition.y.toString(),
+                          ),
+                        ),
+                      )
+                    : Image.asset(
+                        theme.dashAssetForTile(widget.tile),
+                        semanticLabel: context.l10n.puzzleTileLabelText(
+                          widget.tile.value.toString(),
+                          widget.tile.currentPosition.x.toString(),
+                          widget.tile.currentPosition.y.toString(),
+                        ),
+                      ),
               ),
             ),
           ),

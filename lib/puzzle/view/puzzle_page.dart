@@ -46,7 +46,6 @@ class PuzzlePage extends StatelessWidget {
           create: (context) => ThemeBloc(
             initialThemes: [
               const SimpleTheme(),
-              const MyTheme(),
               context.read<DashatarThemeBloc>().state.theme,
             ],
           ),
@@ -144,7 +143,6 @@ class _Puzzle extends StatelessWidget {
                   children: const [
                     PuzzleHeader(),
                     PuzzleSections(),
-                    ThemeSelector(),
                     ResponsiveGap(
                       small: 32,
                       medium: 48,

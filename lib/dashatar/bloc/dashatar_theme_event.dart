@@ -15,3 +15,10 @@ class DashatarThemeChanged extends DashatarThemeEvent {
   @override
   List<Object> get props => [themeIndex];
 }
+
+class AddDashatarTheme extends DashatarThemeEvent {
+  const AddDashatarTheme();
+
+  @override
+  List<Object?> get props => [];
+}
