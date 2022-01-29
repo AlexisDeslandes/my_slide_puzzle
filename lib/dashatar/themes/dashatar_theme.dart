@@ -114,6 +114,7 @@ abstract class DashatarTheme extends PuzzleTheme {
         themeAsset,
         successThemeAsset,
         audioAsset,
-        dashAssetsDirectory
+        dashAssetsDirectory,
+        themeImage,
       ];
 }
